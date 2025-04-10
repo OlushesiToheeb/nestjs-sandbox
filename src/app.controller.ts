@@ -5,13 +5,14 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('hello')
-  getHello(): { message: string } {
-    return { message: this.appService.getHello() };
-  }
-
   @Get()
   getRoot() {
     return { message: 'Hello World from nestjs-sandbox!' };
+  }
+
+  @Get('hello')
+  getHello(): { message: string } {
+    console.log('getHello invoked, returning:', this.appService.getHello());
+    return { message: this.appService.getHello() };
   }
 }
