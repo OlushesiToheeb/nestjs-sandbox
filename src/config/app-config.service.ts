@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 export interface AppConfig {
   nodeEnv: string;
   port: number;
-  // databaseUrl: string;
+  databaseUrl: string;
   isProduction: boolean;
 }
 
@@ -20,9 +20,9 @@ export class AppConfigService {
     return this.configService.get<number>('port', 3000);
   }
 
-  // get databaseUrl(): string {
-  //   return this.configService.get<string>('databaseUrl');
-  // }
+  get databaseUrl(): string {
+    return this.configService.get<string>('databaseUrl', 'development');
+  }
 
   get isProduction(): boolean {
     return this.nodeEnv === 'production';
@@ -33,7 +33,7 @@ export class AppConfigService {
     return {
       nodeEnv: this.nodeEnv,
       port: this.port,
-      // databaseUrl: this.databaseUrl,
+      databaseUrl: this.databaseUrl,
       isProduction: this.isProduction,
     };
   }

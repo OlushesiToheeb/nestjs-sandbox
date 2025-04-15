@@ -15,4 +15,10 @@ export class AppController {
     console.log('getHello invoked, returning:', this.appService.getHello());
     return { message: this.appService.getHello() };
   }
+
+  @Get('db-time')
+  async getDbTime() {
+    const msg = await this.appService.getDbConnection();
+    return { message: msg };
+  }
 }
